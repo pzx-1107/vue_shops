@@ -13,55 +13,21 @@
            <el-breadcrumb-item>商品管理</el-breadcrumb-item>
            <el-breadcrumb-item>商品分类</el-breadcrumb-item>
         </el-breadcrumb>
-        <!-- 卡片试图 -->
-        <el-card>
-            <el-row>
-                <el-button type="primary">添加分类</el-button>
-            </el-row>
-            <tree-table :data="catelist" :columns="columns"
-            :expand-type="false" :selection-type="false" show-index
-            index-text="#" border>
-                <!-- <template>
-                    <el-row>
-                    
-                    </el-row>
-                </template> -->
-            </tree-table>
-        </el-card>
     </div>
-   
 </template>
 
 <script>
-import Http from '../../http/index';
 export default {
     props: {
 
     },
     data() {
         return {
-            catelist: [],
-            columns: [
-                {
-                    label: '分类名称',
-                    prop: 'cat_name'
-                }
-            ]
+
         };
     },
-    created() {
-        this.getCatelist()
-    },
     methods: {
-        getCatelist() {
-            Http({
-                url: '/categories',
-                method: 'get'
-            }).then(res => {
-                console.log(res.data)
-                this.catelist = res.data
-            })
-        }
+
     },
     components: {
 
@@ -69,8 +35,6 @@ export default {
 };
 </script>
 
-<style scoped>
-    .el-card {
-        margin-top: 10px;
-    }
+<style scoped lang="less">
+
 </style>

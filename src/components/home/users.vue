@@ -4,7 +4,7 @@
  * @Author: 叶志文
  * @Date: 2021-04-20 12:30:52
  * @LastEditors: 叶志文
- * @LastEditTime: 2021-04-21 20:03:31
+ * @LastEditTime: 2021-04-21 20:43:31
 -->
 <template>
   <div id="users">
@@ -365,7 +365,6 @@ export default {
         console.log(res);
         if ((res.data.status = 200)) {
           this.amendForm = res.data;
-          
           return this.$message.success(res.meta.msg);
         } else {
           return this.$message.error(res.meta.msg);
@@ -382,6 +381,7 @@ export default {
           email: this.amendForm.email,
           mobile: this.amendForm.mobile,
         }).then((res) => {
+          console.log(res);
           this.fn();
         });
       });
