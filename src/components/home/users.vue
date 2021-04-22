@@ -4,7 +4,7 @@
  * @Author: 叶志文
  * @Date: 2021-04-20 12:30:52
  * @LastEditors: 叶志文
- * @LastEditTime: 2021-04-21 20:43:31
+ * @LastEditTime: 2021-04-22 17:40:06
 -->
 <template>
   <div id="users">
@@ -76,20 +76,20 @@
           </el-table-column>
         </el-table>
         <!-- 分页器 -->
-         <!-- 分页区域  size-change 一页显示多少数据   current-change页码值改变 
+        <!-- 分页区域  size-change 一页显示多少数据   current-change页码值改变 
        :current-page="list.pagenum" 当前的页数 
      :page-sizes  设置每页显示的条数的选项 
        layout 页面的结构 total 共多少条 -->
-      <el-pagination
-        @size-change="handleSizeChange"
-        @current-change="handleCurrentChange"
-        :current-page="queryInfo.pagenum"
-        :page-sizes="[2, 5, 10, 15]"
-        :page-size="queryInfo.pagesize"
-        layout="total, sizes, prev, pager, next, jumper"
-        :total="total"
-      >
-      </el-pagination>
+        <el-pagination
+          @size-change="handleSizeChange"
+          @current-change="handleCurrentChange"
+          :current-page="queryInfo.pagenum"
+          :page-sizes="[2, 5, 10, 15]"
+          :page-size="queryInfo.pagesize"
+          layout="total, sizes, prev, pager, next, jumper"
+          :total="total"
+        >
+        </el-pagination>
       </el-card>
     </template>
     <!-- 添加用户的对话框 -->
@@ -176,9 +176,7 @@
       </div>
       <span slot="footer" class="dialog-footer">
         <el-button @click="setRoleDialogVisible = false">取 消</el-button>
-        <el-button type="primary" @click="saveRoleInfo"
-          >确 定</el-button
-        >
+        <el-button type="primary" @click="saveRoleInfo">确 定</el-button>
       </span>
     </el-dialog>
   </div>
@@ -193,7 +191,7 @@ import {
   usersIdSearch,
   amendUsers,
   removeUsers,
-  assignRole
+  assignRole,
 } from "../../http/users";
 export default {
   props: {},
@@ -291,19 +289,19 @@ export default {
       //所有角色得数据列表
       rolesList: [],
       // 已选中的角色id
-      selectedRoleid:'',
+      selectedRoleid: "",
     };
   },
   methods: {
     // 监听pagesize改变的事件
     handleSizeChange(val) {
       this.queryInfo.pagesize = val;
-      this.fn()
+      this.fn();
     },
     //监听页码值改变
     handleCurrentChange(val) {
       this.queryInfo.pagenum = val;
-       this.fn()
+      this.fn();
     },
     //监听switch开关状态
     userstateChange(userInfo) {
@@ -347,7 +345,7 @@ export default {
             // console.log(res);
             this.addshow = false;
             this.userlist.push(res.data);
-            this.fn()
+            this.fn();
             return this.$message.success(res.meta.msg);
           });
         }
@@ -359,10 +357,10 @@ export default {
     },
     //表单预处理函数&&修改用户
     amendusers(id) {
-      console.log(id);
+      // console.log(id);
       this.amendshow = true;
       usersIdSearch("users/" + id).then((res) => {
-        console.log(res);
+        // console.log(res);
         if ((res.data.status = 200)) {
           this.amendForm = res.data;
           return this.$message.success(res.meta.msg);
@@ -381,8 +379,12 @@ export default {
           email: this.amendForm.email,
           mobile: this.amendForm.mobile,
         }).then((res) => {
-          console.log(res);
-          this.fn();
+          if (res.meta.status == 200) {
+            this.fn();
+            this.$message.success(res.meta.msg);
+          }else{
+             this.$message.error(res.meta.msg);
+          }
         });
       });
     },
@@ -429,23 +431,22 @@ export default {
       this.setRoleDialogVisible = true;
     },
     //点击确定按钮分配角色
-    saveRoleInfo(){
-      if(!this.selectedRoleid){
-        return this.$message.error('请选择要分配得角色')
-      }else{
-       assignRole(`users/+${this.userInfo.id}/role`,{
-         rid:this.selectedRoleid
-       }).then(res=>{
-        //  console.log(res);
-        if(res.meta.status!==200){
-          return this.$message.error(res.meta.msg)
-        }else{
-           this.setRoleDialogVisible=false
-              this.fn()
-           return this.$message.success(res.meta.msg)
-          
-        }
-       })
+    saveRoleInfo() {
+      if (!this.selectedRoleid) {
+        return this.$message.error("请选择要分配得角色");
+      } else {
+        assignRole(`users/+${this.userInfo.id}/role`, {
+          rid: this.selectedRoleid,
+        }).then((res) => {
+          //  console.log(res);
+          if (res.meta.status !== 200) {
+            return this.$message.error(res.meta.msg);
+          } else {
+            this.setRoleDialogVisible = false;
+            this.fn();
+            return this.$message.success(res.meta.msg);
+          }
+        });
       }
     },
 

@@ -79,7 +79,7 @@ export default {
             },
             method: "post",
           }).then((res) => {
-            console.log(res);
+            // console.log(res);
             this.$message({
               message: res.meta.msg, //提示消息
               type: "success", //成功类型
