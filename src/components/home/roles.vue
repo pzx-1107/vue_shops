@@ -4,7 +4,7 @@
  * @Author: 叶志文
  * @Date: 2021-04-20 13:13:01
  * @LastEditors: 叶志文
- * @LastEditTime: 2021-04-20 13:13:01
+ * @LastEditTime: 2021-04-23 10:49:32
 -->
 <template>
     <div>
@@ -52,7 +52,7 @@
                         </el-row>
                     </template>
                 </el-table-column>
-                <el-table-column type="index" label="#"> 
+                <el-table-column type="index"> 
                 </el-table-column>
                 <el-table-column label="角色名称" prop="roleName"> 
                 </el-table-column>
@@ -145,11 +145,11 @@ export default {
             editRules: {
                 roleName: [
                   { required: true, message: '请输入角色名称', trigger: 'blur' },
-                  { min: 1, max: 6, message: '长度在 1 到 6 个字符', trigger: 'blur' }
+                  { min: 1, max: 12, message: '长度在 1 到 12 个字符', trigger: 'blur' }
                 ],
                 roleDesc: [
                   { required: true, message: '请输入角色描述', trigger: 'blur' },
-                  { min: 1, max: 6, message: '长度在 1 到 6 个字符', trigger: 'blur' }
+                  { min: 1, max: 20, message: '长度在 1 到 20 个字符', trigger: 'blur' }
                 ],  
             },
             rules: {
@@ -181,7 +181,7 @@ export default {
                 }).then(res => {
                     // console.log(res.data)
                     this.rolesList = res.data
-                    console.log(this.rolesList)
+                    // console.log(this.rolesList)
 
                 })
         },
@@ -341,18 +341,16 @@ export default {
             const idStr = this.keys.join(',')
             Http({
                 url: `/roles/${this.roleId}/rights`,
-                data: {
-                    rids: idStr
-                },
+                //  {rids: idStr}
                 method: 'post'
             }).then(res => {
-                console.log(res.meta.status)
+                // console.log(res.meta.status)
                 if (res.meta.status !== 200) {
                     return this.$message.error('分配权限失败！')
                 }
                   this.$message.success('分配权限成功！')
                   this.getRolseList()
-                  this.showDialogVisible = false
+                  this.setRightsDialogVisible = false
             })
         }
     },

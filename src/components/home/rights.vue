@@ -4,7 +4,7 @@
  * @Author: 叶志文
  * @Date: 2021-04-20 13:14:01
  * @LastEditors: 叶志文
- * @LastEditTime: 2021-04-20 13:14:10
+ * @LastEditTime: 2021-04-21 18:44:00
 -->
 <template>
     <div>
@@ -13,9 +13,10 @@
            <el-breadcrumb-item>权限管理</el-breadcrumb-item>
            <el-breadcrumb-item>权限列表</el-breadcrumb-item>
         </el-breadcrumb>
+        <div class="box">
         <el-card >
             <el-table border stripe :data="rightsList">
-                <el-table-column type="index" label="#"> 
+                <el-table-column type="index"> 
                 </el-table-column>
                 <el-table-column label="角色名称" prop="authName"> 
                 </el-table-column>
@@ -30,6 +31,7 @@
                 </el-table-column>
             </el-table>
         </el-card>
+        </div>
     </div>
 </template>
 
@@ -53,7 +55,7 @@ export default {
                Http({
             url: '/rights/list',
         }).then(res => {
-            console.log(res.data)
+            // console.log(res.data)
             this.rightsList = res.data
         })
         }
@@ -65,5 +67,7 @@ export default {
 </script>
 
 <style scoped lang="less">
-
+.box{
+    margin-top: 10px;
+}
 </style>
