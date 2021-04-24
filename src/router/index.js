@@ -4,12 +4,20 @@
  * @Author: 叶志文
  * @Date: 2021-04-17 14:35:55
  * @LastEditors: 叶志文
- * @LastEditTime: 2021-04-20 13:31:12
+ * @LastEditTime: 2021-04-24 11:06:27
  */
 import Vue from 'vue'
 import VueRouter from 'vue-router'
 import Login from "../views/login.vue"
 Vue.use(VueRouter)
+
+
+
+// // 解决ElementUI导航栏中的vue-router在3.0版本以上重复点菜单报错问题
+// const originalPush = Router.prototype.push
+// Router.prototype.push = function push(location) {
+//     return originalPush.call(this, location).catch(err => err)
+// }
 
 const routes = [{
         path: "/",
@@ -69,6 +77,12 @@ const routes = [{
                 path: "reports",
                 component: () => {
                     return import ( /* webpackChunkName: "home" */ '../components/home/reports.vue')
+                },
+            },
+            {
+                path: "/goods/addCommodity",
+                component: () => {
+                    return import ( /* webpackChunkName: "home" */ '../components/home/addCommodity.vue')
                 },
             },
         ]

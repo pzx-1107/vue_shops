@@ -4,7 +4,7 @@
  * @Author: 叶志文
  * @Date: 2021-04-20 13:16:24
  * @LastEditors: 叶志文
- * @LastEditTime: 2021-04-22 17:41:21
+ * @LastEditTime: 2021-04-23 15:29:23
 -->
 <template>
   <div>
@@ -18,7 +18,7 @@
       <el-card>
         <el-row>
           <el-col :span="8">
-            <el-input placeholder="请输入内容">
+            <el-input placeholder="请输入内容" v-model="queryInfo.query" clearable  @keyup.enter.native="getOderList" @clear="getOderList">
               <el-button slot="append" icon="el-icon-search"></el-button>
             </el-input>
           </el-col>
@@ -162,20 +162,20 @@
             <el-form
               :model="modifyOrderInfo"
               ref="modifyorderRef"
+              :rules="modifyorderRules"
               label-width="100px"
             >
-              <el-form-item label="是否发货：">
-                <el-input v-model="modifyOrderInfo.is_send"></el-input>
+              <el-form-item label="是否发货：" prop="is_send">
+                <el-input v-model="modifyOrderInfo.is_send" type="number"></el-input>
               </el-form-item>
-              <el-form-item label="支付方式：">
-                <el-input v-model="modifyOrderInfo.order_pay"></el-input>
+              <el-form-item label="支付方式：" prop="order_pay">
+                <el-input v-model="modifyOrderInfo.order_pay" type="number"></el-input>
               </el-form-item>
-              <el-form-item label="订单价格：">
-                <el-input v-model="modifyOrderInfo.order_price"></el-input>
+              <el-form-item label="订单价格：" prop="order_price">
+                <el-input v-model="modifyOrderInfo.order_price" type="number"></el-input>
               </el-form-item>
-            
-              <el-form-item label="支付状态：">
-                <el-input v-model="modifyOrderInfo.pay_status"></el-input>
+              <el-form-item label="支付状态：" prop="pay_status">
+                <el-input v-model="modifyOrderInfo.pay_status" type="number"></el-input>
               </el-form-item>
             </el-form>
           </div>
@@ -222,6 +222,8 @@ export default {
       orderList: [],
       //控制修改地址对话框的显示和隐藏
       addressVisible: false,
+      //双向绑定修改地址弹出框数据address1为地址选择
+      //address2为详细地址
       addressForm: {
         address1: [],
         address2: "",
@@ -260,6 +262,20 @@ export default {
         order_id: null,
       },
       //修改订单详情验证规则
+      modifyorderRules:{
+         is_send: [
+          { required: true, message: "只能为数字", trigger: "blur" },
+        ],
+            order_pay: [
+          { required: true, message: "只能为数字", trigger: "blur" },
+        ],
+            order_price: [
+          { required: true, message: "只能为数字", trigger: "blur" },
+        ],
+            pay_status: [
+          { required: true, message: "只能为数字", trigger: "blur" },
+        ],
+      }
     };
   },
   mounted() {

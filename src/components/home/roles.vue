@@ -4,7 +4,7 @@
  * @Author: 叶志文
  * @Date: 2021-04-20 13:13:01
  * @LastEditors: 叶志文
- * @LastEditTime: 2021-04-22 09:10:15
+ * @LastEditTime: 2021-04-23 10:49:32
 -->
 <template>
     <div>
@@ -145,11 +145,11 @@ export default {
             editRules: {
                 roleName: [
                   { required: true, message: '请输入角色名称', trigger: 'blur' },
-                  { min: 1, max: 6, message: '长度在 1 到 6 个字符', trigger: 'blur' }
+                  { min: 1, max: 12, message: '长度在 1 到 12 个字符', trigger: 'blur' }
                 ],
                 roleDesc: [
                   { required: true, message: '请输入角色描述', trigger: 'blur' },
-                  { min: 1, max: 6, message: '长度在 1 到 6 个字符', trigger: 'blur' }
+                  { min: 1, max: 20, message: '长度在 1 到 20 个字符', trigger: 'blur' }
                 ],  
             },
             rules: {

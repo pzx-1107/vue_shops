@@ -4,7 +4,7 @@
  * @Author: 叶志文
  * @Date: 2021-04-20 12:30:52
  * @LastEditors: 叶志文
- * @LastEditTime: 2021-04-22 17:40:06
+ * @LastEditTime: 2021-04-23 10:09:26
 -->
 <template>
   <div id="users">
@@ -15,8 +15,8 @@
     </el-breadcrumb>
     <!-- //搜索添加 -->
     <div class="search">
-      <el-input placeholder="请输入内容" v-model="queryInfo.Id" class="input">
-        <el-button slot="append" icon="el-icon-search" @click="serachId">
+      <el-input placeholder="请输入内容" v-model="queryInfo.Id" class="input"  @keyup.enter.native="serachId" @clear="fn" clearable>
+        <el-button slot="append" icon="el-icon-search" @click="serachId" >
         </el-button>
       </el-input>
       <el-button
@@ -327,7 +327,6 @@ export default {
           return this.$message.error(res.meta.msg);
         } else {
           // console.log(this.amendusername);
-
           this.userlist = [];
           this.userlist.push(res.data);
           //  console.log(this.userlist);

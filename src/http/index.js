@@ -21,7 +21,7 @@ export default function(config) {
             // 获取 token
             let token = sessionStorage.getItem('token');
             // // 保存 token
-            config.headers['Authorization'] = token;
+            config.headers.Authorization = token;
         }
         // config.headers.Authorization = window.sessionStorage.getItem('token')
         return config
