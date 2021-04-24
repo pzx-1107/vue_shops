@@ -225,10 +225,10 @@ export default {
                    method: 'post'
                }).then(res => {
                    if (res.meta.status == 201) {
-                      this.$message.success("删除角色成功");
+                      this.$message.success("添加角色成功");
                       this.getRolseList();
                     } else {
-                      this.$message.error("删除角色失败");
+                      this.$message.error("添加角色失败");
                     }
                })
            })

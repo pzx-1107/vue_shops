@@ -14,11 +14,6 @@
            <el-breadcrumb-item>权限列表</el-breadcrumb-item>
         </el-breadcrumb>
         <el-card >
-            <el-row>
-                <el-col>
-                    <el-button type="primary">添加角色</el-button>
-                </el-col>
-            </el-row>
             <el-table border stripe :data="rightsList">
                 <el-table-column type="index" label="#"> 
                 </el-table-column>
