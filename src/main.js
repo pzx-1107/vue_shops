@@ -4,7 +4,7 @@
  * @Author: 叶志文
  * @Date: 2021-04-17 14:35:55
  * @LastEditors: 叶志文
- * @LastEditTime: 2021-04-24 10:25:05
+ * @LastEditTime: 2021-04-24 15:56:16
  */
 import Vue from 'vue'
 import App from './App.vue'
@@ -13,13 +13,12 @@ import ElementUI from 'element-ui';
 import 'element-ui/lib/theme-chalk/index.css';
 
 import TreeTable from 'tree-table-vue'
-<<<<<<< HEAD
+// <<<<<<< HEAD // >>>>>>> e0d3fde86cf562f51b0aad54571254f0230eae08
 
 Vue.component(TreeTable.name, TreeTable)
-=======
 import "./assets/quanjustyle.css"
 Vue.use(TreeTable)
->>>>>>> e0d3fde86cf562f51b0aad54571254f0230eae08
+
 Vue.use(ElementUI);
 
 Vue.config.productionTip = false
@@ -37,13 +36,16 @@ Vue.filter('dataFormat', function(originVal) {
     })
     //富文本编辑器全局引入
 import VueQuillEditor from 'vue-quill-editor'
-
 import 'quill/dist/quill.core.css' // import styles
 import 'quill/dist/quill.snow.css' // for snow theme
 import 'quill/dist/quill.bubble.css' // for bubble theme
-
 Vue.use(VueQuillEditor, /* { default global options } */ )
-
+    // 更改页面title值
+Vue.directive('title', {
+    inserted: function(el, binding) {
+        document.title = el.dataset.title
+    }
+})
 
 new Vue({
     router,

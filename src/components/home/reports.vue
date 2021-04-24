@@ -4,7 +4,7 @@
  * @Author: 叶志文
  * @Date: 2021-04-20 13:17:16
  * @LastEditors: 叶志文
- * @LastEditTime: 2021-04-22 10:22:47
+ * @LastEditTime: 2021-04-24 16:00:54
 -->
 <template>
     <div>
@@ -42,7 +42,7 @@ export default {
     },
     mounted(){
       num_axios().then(res=>{
-          console.log(res);
+        //   console.log(res);
             var chartDom = document.getElementById('main');
             var myChart = echarts.init(chartDom);
             var option;

@@ -4,7 +4,7 @@
  * @Author: 叶志文
  * @Date: 2021-04-17 14:35:55
  * @LastEditors: 叶志文
- * @LastEditTime: 2021-04-24 11:06:27
+ * @LastEditTime: 2021-04-24 15:53:46
  */
 import Vue from 'vue'
 import VueRouter from 'vue-router'
@@ -25,7 +25,7 @@ const routes = [{
     },
     {
         path: '/login',
-        component: Login
+        component: Login,
     }, {
         path: '/home',
         component: () =>

@@ -4,7 +4,7 @@
  * @Author: 叶志文
  * @Date: 2021-04-20 13:14:29
  * @LastEditors: 叶志文
- * @LastEditTime: 2021-04-24 11:32:07
+ * @LastEditTime: 2021-04-24 14:11:51
 -->
 <template>
   <div>
@@ -120,7 +120,7 @@ export default {
       total: 0,
       //订单列表数据
       goodsList: [],
-      // 修改用户所有的信息
+      // 修改商品的信息
       amendForm: {
         goods_name: "",
         goods_price: null,
