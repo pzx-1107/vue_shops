@@ -13,13 +13,11 @@ import ElementUI from 'element-ui';
 import 'element-ui/lib/theme-chalk/index.css';
 
 import TreeTable from 'tree-table-vue'
-<<<<<<< HEAD
+// <<<<<<< HEAD
 
 Vue.component(TreeTable.name, TreeTable)
-=======
 import "./assets/quanjustyle.css"
 Vue.use(TreeTable)
->>>>>>> e0d3fde86cf562f51b0aad54571254f0230eae08
 Vue.use(ElementUI);
 
 Vue.config.productionTip = false

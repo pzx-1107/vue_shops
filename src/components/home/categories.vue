@@ -13,7 +13,7 @@
            <el-breadcrumb-item>商品管理</el-breadcrumb-item>
            <el-breadcrumb-item>商品分类</el-breadcrumb-item>
         </el-breadcrumb>
-<<<<<<< HEAD
+
         <!-- 卡片试图 -->
         <el-card>
             <el-row>
@@ -32,8 +32,8 @@
                     <el-tag type="warning" v-else>三级</el-tag>
                 </template>
                 <template slot="opt" slot-scope="scope">
-                     <el-button type="primary" icon="el-icon-edit" @click='findCate(scope.row.cat_id)'>编辑</el-button>
-                     <el-button type="danger" icon="el-icon-delete" @click="cateDelete(scope.row.cat_id)">删除</el-button>
+                     <el-button size="mini" type="primary" icon="el-icon-edit" @click='findCate(scope.row.cat_id)'>编辑</el-button>
+                     <el-button size="mini" type="danger" icon="el-icon-delete" @click="cateDelete(scope.row.cat_id)">删除</el-button>
                 </template>
             </tree-table>
             <!-- 分页 -->
@@ -105,19 +105,20 @@
             <el-button type="primary" @click="editCate">确 定</el-button>
           </span>
         </el-dialog>
-=======
->>>>>>> e0d3fde86cf562f51b0aad54571254f0230eae08
+
     </div>
 </template>
 
 <script>
+import Http from "./../../http/index";
+
 export default {
     props: {
 
     },
     data() {
         return {
-<<<<<<< HEAD
+
             catelist: [],
             columns: [
                 {
@@ -171,13 +172,13 @@ export default {
                 label: 'cat_name',
                 children: 'children'
             }
-=======
 
->>>>>>> e0d3fde86cf562f51b0aad54571254f0230eae08
         };
     },
+    created() {
+        this.getCatelist()
+    },
     methods: {
-<<<<<<< HEAD
         getCatelist() {
             Http({
                 url: '/categories',
@@ -330,9 +331,8 @@ export default {
             })
             this.editDialogVisibleCate = false
         }
-=======
 
->>>>>>> e0d3fde86cf562f51b0aad54571254f0230eae08
+
     },
     components: {
 
@@ -340,7 +340,7 @@ export default {
 };
 </script>
 
-<<<<<<< HEAD
+
 <style scoped>
     .el-card {
         margin-top: 10px;
@@ -351,8 +351,7 @@ export default {
     .el-cascader {
         width: 100%;
     }
-=======
-<style scoped lang="less">
 
->>>>>>> e0d3fde86cf562f51b0aad54571254f0230eae08
+
+
 </style>

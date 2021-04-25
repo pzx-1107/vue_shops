@@ -60,10 +60,10 @@
                 </el-table-column>
                 <el-table-column label="操作"> 
                     <template slot-scope="scope">
-                        <el-button type="primary" icon="el-icon-edit" @click="findRoles(scope.row.id)">编辑</el-button>
-                        <el-button type="danger" icon="el-icon-delete" @click="deleteRoles(scope.row.id)">删除</el-button>
-                        <el-button type="warning" icon="el-icon-star-off" @click="showDialogRole(scope.row)">分配权限</el-button>
-                    </template>
+                        <el-button size="mini" type="primary" icon="el-icon-edit" @click="findRoles(scope.row.id)">编辑</el-button>
+                        <el-button size="mini" type="danger" icon="el-icon-delete" @click="deleteRoles(scope.row.id)">删除</el-button>
+                        <el-button size="mini" type="warning" icon="el-icon-star-off" @click="showDialogRole(scope.row)">分配权限</el-button>
+                    </template> 
                 </el-table-column>
             </el-table>
         </el-card>
