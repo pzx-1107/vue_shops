@@ -4,11 +4,11 @@
  * @Author: 叶志文
  * @Date: 2021-04-17 14:35:55
  * @LastEditors: 叶志文
- * @LastEditTime: 2021-04-17 15:22:02
+ * @LastEditTime: 2021-04-24 15:55:36
 -->
 <template>
   <div id="app">
-    
+     <div v-title data-title="电商后台管理系统"></div>
     <router-view/>
   </div>
 </template>

@@ -286,7 +286,7 @@ export default {
     },
     //预览图片操作
     handlePreview(file) {
-      console.log(file);
+      // console.log(file);
       this.previewUrl =file.response.data.url;
       this.ImgVisible = true;
     },
@@ -314,7 +314,7 @@ export default {
         //pics是个数组把得到的变为对象再push在数组中
         const picsInfo = { pics: res.data.tmp_path };
         this.addcommForm.pics.push(picsInfo);
-        console.log(this.addcommForm);
+        // console.log(this.addcommForm);
         return this.$message.success(res.meta.msg);
       }
     },
@@ -348,7 +348,7 @@ export default {
       })
       //把addcommForm.attrs赋值给拷贝过的cbaddcommForm.attrs  数据提交时提交的是cbaddcommForm
     cbaddcommForm.attrs=this.addcommForm.attrs
-    console.log(cbaddcommForm);
+    // console.log(cbaddcommForm);
        //发送添加商品请求
        Http({
          url:'goods',

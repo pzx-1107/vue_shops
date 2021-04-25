@@ -4,7 +4,7 @@
  * @Author: 叶志文
  * @Date: 2021-04-20 13:15:33
  * @LastEditors: 叶志文
- * @LastEditTime: 2021-04-20 13:15:33
+ * @LastEditTime: 2021-04-24 16:00:44
 -->
 <template>
     <div>
@@ -13,7 +13,6 @@
            <el-breadcrumb-item>商品管理</el-breadcrumb-item>
            <el-breadcrumb-item>商品分类</el-breadcrumb-item>
         </el-breadcrumb>
-
         <!-- 卡片试图 -->
         <el-card>
             <el-row>
@@ -105,7 +104,6 @@
             <el-button type="primary" @click="editCate">确 定</el-button>
           </span>
         </el-dialog>
-
     </div>
 </template>
 
@@ -118,7 +116,6 @@ export default {
     },
     data() {
         return {
-
             catelist: [],
             columns: [
                 {
@@ -172,7 +169,6 @@ export default {
                 label: 'cat_name',
                 children: 'children'
             }
-
         };
     },
     created() {
@@ -244,7 +240,7 @@ export default {
                     method: 'post',
                     data: this.ruleForm
                 }).then(res => {
-                    console.log(res)
+                    // console.log(res)
                     if(res.meta.status !== 201) {
                         this.$message.error('添加分类失败')
                     } 
@@ -288,7 +284,7 @@ export default {
                     url: `/categories/${cateId}`,
                     method: 'delete'
                 }).then(res => {
-                    console.log(res.meta.status)
+                    // console.log(res.meta.status)
                     if (res.meta.status == 200) {
                       this.$message.success("删除商品分类成功");
                       this.getCatelist();
@@ -308,8 +304,8 @@ export default {
 
             this.$refs.cateRuleFormRefs.validate(valid => {
                 if(!valid) return
-                    console.log(this.editForm.cat_name)
-                    console.log(this.editForm.cat_pid)
+                    // console.log(this.editForm.cat_name)
+                    // console.log(this.editForm.cat_pid)
 
 
                 Http({
@@ -320,7 +316,7 @@ export default {
                     },
                     method: 'put'
                 }).then(res => {
-                    console.log(res.meta.status)
+                    // console.log(res.meta.status)
                     if(res.meta.status == 200) {
                         this.$message.success('编辑分类成功')
                         this.getCatelist()
