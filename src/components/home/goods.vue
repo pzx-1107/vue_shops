@@ -93,12 +93,13 @@
         <el-form-item label="商品重量">
           <el-input v-model="amendForm.goods_weight" type="number"></el-input>
         </el-form-item>
+        <!-- 对话框底部按钮区域 -->
+        <el-form-item>
+          <el-button @click="amendshow = false">取 消</el-button>
+          <el-button type="primary" @click="editGoods">确 定</el-button>
+        </el-form-item>
       </el-form>
-      <!-- 对话框底部按钮区域 -->
-      <span slot="footer" class="dialog-footer">
-        <el-button @click="amendshow = false">取 消</el-button>
-        <el-button type="primary" @click="amendGoods">确 定</el-button>
-      </span>
+      
     </el-dialog>
   
   </div>
@@ -121,14 +122,9 @@ export default {
       //订单列表数据
       goodsList: [],
       // 修改商品的信息
-      amendForm: {
-        goods_name: "",
-        goods_price: null,
-        goods_number: null,
-        goods_weight: null,
-      },
+      amendForm: {},
       //每个商品ID
-      goods_id: null,
+      // goods_id: '',
       //控制修改商品信息对话框显示和隐藏
       amendshow: false,
     };
@@ -144,32 +140,42 @@ export default {
       this.queryInfo.pagenum = val;
       this.getGoodsList();
     },
-    // 点击让修改商品对话框显示,并保存对应商品ID
+    // 查询商品
     amend(goods_id) {
+      Http({
+        url: `/goods/${goods_id}`,
+        method: 'get'
+      }).then(res => {
+        console.log(res.data)
+        this.amendForm = res.data
+      })
       this.amendshow = true;
-      this.goods_id = goods_id;
-      // console.log(this.goods_id)
+      // this.goods_id = goods_id;
     },
-    //点击确定发送请求
-    amendGoods() {
+
+   
+    //编辑提交商品
+    editGoods() {
+        console.log(this.amendForm.goods_id)
+
       this.$refs.amendFormRef.validate((valid) => {
         if (!valid) {
           return;
         } else {
-          // console.log(this.amendForm);
           Http({
-            url: "goods/" + this.goods_id,
-            data: {
-              goods_name:this.amendForm.goods_name,
-              goods_price:this.amendForm.goods_price,
-              goods_number:this.amendForm.goods_number,
-              goods_weight:this.amendForm.goods_weight,
-            },
+            url: `/goods/${this.amendForm.goods_id}`,
+            data: this.amendForm,
             method: "put",
           }).then((res) => {
-            console.log(res);
+            console.log(res.meta.status);
+            if(res.meta.status == 200) {
+              this.$message.success('修改商品成功')
+              this.getGoodsList();
+              this.amendshow = false;
+            } else {
+              this.$message.error('修改商品失败')
+            }
           });
-          this.amendshow = false;
         }
       });
     },
@@ -228,6 +234,7 @@ export default {
         }
       });
     },
+    
   },
   components: {},
   mounted() {

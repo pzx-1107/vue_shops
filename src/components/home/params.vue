@@ -274,7 +274,7 @@ export default {
             }
         })
     },
-    editParams(attr_id) {
+    editParams() {
         this.$refs.editFormRef.validate(valid => {
             if(valid) {
                 Http({
